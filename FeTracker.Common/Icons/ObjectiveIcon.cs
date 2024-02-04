@@ -4,7 +4,7 @@ using FeTracker.Common.Interfaces;
 
 namespace FeTracker.Common.Icons
 {
-    public class ObjectiveIcon(Objectives objective, IconState iconState = IconState.Gray, int itemCount = 0) : IClickable<Objectives>
+    public class ObjectiveIcon(Objectives objective, IconState iconState = IconState.Gray, int itemCount = 0) : IClickable
     {
         public string Class { get => objective.ToString(); }
 

@@ -1,6 +1,6 @@
 ﻿namespace FeTracker.Common.Interfaces
 {
-    public interface IClickable<TEnum> where TEnum : Enum
+    public interface IClickable
     {
         /// <summary>
         /// Returns the css class that should represent the icon
