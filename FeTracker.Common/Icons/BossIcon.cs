@@ -4,7 +4,7 @@ using FeTracker.Common.Interfaces;
 
 namespace FeTracker.Common.Icons;
 
-public class BossIcon(BossBattle bossBattle, IconState state = IconState.Gray) : IClickable<BossBattle>
+public class BossIcon(BossBattle bossBattle, IconState state = IconState.Gray) : IClickable
 {
     public string Class { get => bossBattle.ToString(); }
 

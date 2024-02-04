@@ -4,7 +4,7 @@ using FeTracker.Common.Interfaces;
 
 namespace FeTracker.Common.Icons
 {
-    public class KeyItemIcon(KeyItem keyItem, IconState state = IconState.Gray) : IClickable<KeyItem>
+    public class KeyItemIcon(KeyItem keyItem, IconState state = IconState.Gray) : IClickable
     {
         public string Class { get => keyItem.ToString(); }
 
