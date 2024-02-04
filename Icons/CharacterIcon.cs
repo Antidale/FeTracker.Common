@@ -2,7 +2,7 @@
 using FeTracker.Common.Extensions;
 using FeTracker.Common.Interfaces;
 
-namespace FeTracker.Common
+namespace FeTracker.Common.Icons
 {
     public class CharacterIcon(Characters character, IconState iconState = IconState.Gray) : IClickable<Characters>
     {

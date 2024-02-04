@@ -2,7 +2,7 @@
 using FeTracker.Common.Extensions;
 using FeTracker.Common.Interfaces;
 
-namespace FeTracker.Common
+namespace FeTracker.Common.Icons
 {
     public class ObjectiveIcon(Objectives objective, IconState iconState = IconState.Gray, int itemCount = 0) : IClickable<Objectives>
     {

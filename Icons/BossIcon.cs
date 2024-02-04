@@ -2,7 +2,7 @@
 using FeTracker.Common.Extensions;
 using FeTracker.Common.Interfaces;
 
-namespace FeTracker.Common;
+namespace FeTracker.Common.Icons;
 
 public class BossIcon(BossBattle bossBattle, IconState state = IconState.Gray) : IClickable<BossBattle>
 {
