@@ -12,7 +12,7 @@ public class BossIcon(BossBattle bossBattle, IconState state = IconState.Gray) :
 
     public string Name => bossBattle.GetDescription();
 
-    public void HandleClick()
+    public IconState HandleClick()
     {
         state = state switch
         {
@@ -21,6 +21,8 @@ public class BossIcon(BossBattle bossBattle, IconState state = IconState.Gray) :
         };
 
         FileName = UpdateName();
+
+        return state;
     }
 
     private string UpdateName() => $"{bossBattle}-{state}.png";

@@ -12,7 +12,7 @@ namespace FeTracker.Common.Icons
 
         public string Name => character.GetDescription();
 
-        public void HandleClick()
+        public IconState HandleClick()
         {
             (character, iconState) = (character, iconState) switch
             {
@@ -27,6 +27,8 @@ namespace FeTracker.Common.Icons
             };
 
             FileName = UpdateName();
+
+            return iconState;
         }
 
         private string UpdateName() => $"{character}-{iconState}.png";

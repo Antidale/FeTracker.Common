@@ -12,13 +12,15 @@ namespace FeTracker.Common.Icons
 
         public string FileName { get; private set; } = "NotComplete.png";
 
-        public void HandleClick()
+        public IconState HandleClick()
         {
             (iconState, FileName) = iconState switch
             {
                 IconState.Gray => (IconState.Color, "Complete.png"),
                 _ => (IconState.Gray, "NotComplete.png")
             };
+
+            return iconState;
         }
     }
 }

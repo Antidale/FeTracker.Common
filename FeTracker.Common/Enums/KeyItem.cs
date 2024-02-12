@@ -1,30 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FeTracker.Common.Enums
+﻿namespace FeTracker.Common.Enums
 {
     public enum KeyItem
     {
-        Crystal,
-        Pass,
-        Hook,
-        DarknessCrystal,
-        EarthCrystal,
-        TwinHarp,
+        Pass = -1,
         Package,
         SandRuby,
+        LegendSword,
         BaronKey,
+        TwinHarp,
+        EarthCrystal,
         MagmaKey,
         TowerKey,
+        Hook,
         LucaKey,
+        DarknessCrystal,
+        RatTail,
         Adamant,
-        LegendSword,
         Pan,
         Spoon,
-        RatTail,
-        PinkTail
+        PinkTail,
+        Crystal
     }
 }

@@ -1,0 +1,24 @@
+﻿@using FeTracker.Common.Icons
+@using FeTracker.Common.Enums
+
+<div class="tracker-grid">
+    @foreach (var icon in Icons)
+    {
+        <ClickableIcon Icon=@icon />
+    }
+</div>
+
+@code {
+
+    List<KeyItemIcon> Icons = [];
+
+    protected override void OnInitialized()
+    {
+        foreach (KeyItem iconType in Enum.GetValues<KeyItem>())
+        {
+            Icons.Add(new KeyItemIcon(iconType));
+        }
+
+        base.OnInitialized();
+    }
+}
