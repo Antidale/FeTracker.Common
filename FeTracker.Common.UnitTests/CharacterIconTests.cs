@@ -1,5 +1,3 @@
-using FeTracker.Common.Enums;
-using FeTracker.Common.Icons;
 using FluentAssertions;
 
 namespace FeTracker.Common.UnitTests
@@ -14,7 +12,6 @@ namespace FeTracker.Common.UnitTests
             icon.HandleClick();
 
             icon.FileName.Should().BeEquivalentTo($"{Characters.PaladinCecil}-{IconState.Color}.png");
-            
         }
 
         [Fact]

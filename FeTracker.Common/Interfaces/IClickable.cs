@@ -1,4 +1,6 @@
-﻿namespace FeTracker.Common.Interfaces
+﻿using FeTracker.Common.Enums;
+
+namespace FeTracker.Common.Interfaces
 {
     public interface IClickable
     {
@@ -17,6 +19,6 @@
         /// <summary>
         /// Handles updating internal state of the class
         /// </summary>
-        void HandleClick();
+        IconState HandleClick();
     }
 }

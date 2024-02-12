@@ -8,7 +8,7 @@
 	<Version>1.0.0</Version>
 	<Authors>antidale</Authors>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	<Title>Free Enterprise Info</Title>
+	<Title>FeTracker.Common</Title>
 	<Description>A collection of things to help make Free Enterprise trackers</Description>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<RepositoryUrl>https://github.com/Antidale/FeTracker.Common</RepositoryUrl>

@@ -12,7 +12,7 @@ namespace FeTracker.Common.Icons
 
         public string FileName { get; private set; } = $"{keyItem}-{state}.png";
 
-        public void HandleClick()
+        public IconState HandleClick()
         {
             state = state switch
             {
@@ -23,6 +23,8 @@ namespace FeTracker.Common.Icons
             };
 
             FileName = UpdateName();
+
+            return state;
         }
 
         private string UpdateName() => $"{keyItem}-{state}.png";
