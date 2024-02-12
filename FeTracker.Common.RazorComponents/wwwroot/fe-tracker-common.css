@@ -19,3 +19,76 @@
 .completed-objective {
     text-decoration: line-through;
 }
+
+.Crystal {
+    grid-area: Crystal;
+}
+
+.Pass {
+    grid-area: Pass;
+}
+
+.Hook {
+    grid-area: Hook;
+}
+
+.DarknessCrystal {
+    grid-area: DarknessCrystal;
+}
+
+
+.EarthCrystal {
+    grid-area: EarthCrystal;
+}
+
+.TwinHarp {
+    grid-area: TwinHarp;
+}
+
+.Package {
+    grid-area: Package;
+}
+
+.SandRuby {
+    grid-area: SandRuby;
+}
+
+.BaronKey {
+    grid-area: BaronKey;
+}
+
+.MagmaKey {
+    grid-area: MagmaKey;
+}
+
+.TowerKey {
+    grid-area: TowerKey;
+}
+
+.LucaKey {
+    grid-area: LucaKey;
+}
+
+.Adamant {
+    grid-area: Adamant;
+}
+
+.LegendSword {
+    grid-area: LegendSword;
+}
+
+.Pan {
+    grid-area: Pan;
+}
+
+.Spoon {
+    grid-area: Spoon;
+}
+
+.RatTail {
+    grid-area: RatTail;
+}
+
+.PinkTail {
+    grid-area: PinkTail;
+}
