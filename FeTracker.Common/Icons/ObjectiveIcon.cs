@@ -16,11 +16,21 @@ namespace FeTracker.Common.Icons
         {
             (iconState, FileName) = iconState switch
             {
-                IconState.Gray => (IconState.Color, "Complete.png"),
+                IconState.Gray => (IconState.Check, "Complete.png"),
                 _ => (IconState.Gray, "NotComplete.png")
             };
 
             return iconState;
         }
+
+        public void SetIconState(IconState newState)
+        {
+            (iconState, FileName) = newState switch
+            {
+                IconState.Check => (IconState.Check, "Complete.png"),
+                _ => (newState, "NotComplete.png")
+            };
+        }
+        
     }
 }

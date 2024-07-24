@@ -14,6 +14,14 @@
         ".              RatTail     PinkTail    .";
     justify-items: center;
     align-items: center;
+    margin: 5px;
+    border: 2px ridge white;
+    border-radius: 5px 5px;
+    background-color: rgba(0, 0, 99);
+}
+
+.hidden {
+    display: none;
 }
 
 .completed-objective {
@@ -35,7 +43,6 @@
 .DarknessCrystal {
     grid-area: DarknessCrystal;
 }
-
 
 .EarthCrystal {
     grid-area: EarthCrystal;

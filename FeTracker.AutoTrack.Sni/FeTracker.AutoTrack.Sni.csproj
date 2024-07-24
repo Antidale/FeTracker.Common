@@ -16,4 +16,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+	  <Content Include="Protos\sni.proto" Pack="true" Visible="true" />
+  </ItemGroup>
+
 </Project>

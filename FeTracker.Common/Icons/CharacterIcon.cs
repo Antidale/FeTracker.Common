@@ -31,6 +31,12 @@ namespace FeTracker.Common.Icons
             return iconState;
         }
 
+        public void SetIconState(IconState newIconState)
+        {
+            iconState = newIconState;
+            FileName = UpdateName();
+        }
+
         private string UpdateName() => $"{character}-{iconState}.png";
     }
 }

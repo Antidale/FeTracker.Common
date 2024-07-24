@@ -8,7 +8,12 @@
     }
 </div>
 
+@* temp hiding of refresh button *@
+@* <button class="@(HideReset ? "hidden" : "")" @onclick="@Refresh">Refresh</button> *@
+
 @code {
+    [Parameter]
+    public bool HideReset { get; set; }
 
     List<KeyItemIcon> Icons = [];
 
@@ -20,5 +25,15 @@
         }
 
         base.OnInitialized();
+    }
+
+    public async Task Refresh()
+    {
+        Icons = [];
+        foreach (KeyItem iconType in Enum.GetValues<KeyItem>())
+        {
+            Icons.Add(new KeyItemIcon(iconType));
+        }
+        StateHasChanged();
     }
 }

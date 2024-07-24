@@ -1,7 +1,7 @@
 ﻿@using FeTracker.Common.Icons
 @using FeTracker.Common.Interfaces
 
-<img src="@CombinedPath" onclick=@(() => HandleClick()) class="@Icon?.Class">
+<img src="@CombinedPath" @onclick=@HandleClick class="@Icon?.Class">
 
 @code {
     [CascadingParameter]
