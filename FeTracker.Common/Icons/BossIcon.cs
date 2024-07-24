@@ -25,5 +25,16 @@ public class BossIcon(BossBattle bossBattle, IconState state = IconState.Gray) :
         return state;
     }
 
+    public void SetIconState(IconState iconState)
+    {
+        state = iconState switch
+        {
+            IconState.Color => IconState.Color,
+            _ => IconState.Gray
+        };
+
+        FileName = UpdateName();
+    }
+
     private string UpdateName() => $"{bossBattle}-{state}.png";
 }

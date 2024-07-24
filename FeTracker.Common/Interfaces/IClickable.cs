@@ -8,17 +8,26 @@ namespace FeTracker.Common.Interfaces
         /// Returns the css class that should represent the icon
         /// </summary>
         string Class { get; }
+
         /// <summary>
         /// Returns the expected filename of the image
         /// </summary>
         string FileName { get; }
+
         /// <summary>
         /// Returns a readable name/description of the icon
         /// </summary>
         string Name { get; }
+
         /// <summary>
         /// Handles updating internal state of the class
         /// </summary>
         IconState HandleClick();
+
+        /// <summary>
+        /// Sets the state of the icon, used for autotracking/refresh
+        /// </summary>
+        /// <param name="iconState"></param>
+        void SetIconState(IconState iconState);
     }
 }
