@@ -13,6 +13,7 @@
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<RepositoryUrl>https://github.com/Antidale/FeTracker.Common</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
+	<PackageProjectUrl>https://github.com/Antidale/FeTracker.Common</PackageProjectUrl>
   </PropertyGroup>
 
 
