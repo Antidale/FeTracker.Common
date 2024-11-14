@@ -21,8 +21,9 @@
 }
 
 .hidden {
-    display: none;
+    visibility: hidden;
 }
+
 
 .completed-objective {
     text-decoration: line-through;
