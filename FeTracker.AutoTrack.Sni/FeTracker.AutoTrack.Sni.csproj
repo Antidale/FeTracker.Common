@@ -7,6 +7,7 @@
     <Version>1.0.1-beta-2</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Description>A package designed to make starting up an connection with SNI easier.</Description>
   </PropertyGroup>
 
   <ItemGroup>
