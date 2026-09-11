@@ -1,4 +1,6 @@
 ﻿.tracker-grid {
+    --tracker-background: rgba(0, 0, 99);
+    --tracker-border-color: white;
     width: 140px;
     padding: 5px;
     display: grid;
@@ -15,15 +17,14 @@
     justify-items: center;
     align-items: center;
     margin: 5px;
-    border: 2px ridge white;
+    border: 2px ridge var(--tracker-border-color);
     border-radius: 5px 5px;
-    background-color: rgba(0, 0, 99);
+    background-color: var(--tracker-background);
 }
 
 .hidden {
     visibility: hidden;
 }
-
 
 .completed-objective {
     text-decoration: line-through;
