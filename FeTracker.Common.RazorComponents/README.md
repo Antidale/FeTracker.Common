@@ -20,3 +20,11 @@ If you'd like to override styles, make sure to include that link _above_ the sty
     background-color: darkblue;
 }
 ```
+There are also some css properties set for the background color and the border color of the `tracker-grid`. Here are the defaults:
+```css
+.tracker-grid {
+    --tracker-background: rgba(0, 0, 99);
+    --tracker-border-color: white;
+}
+```
+As with the layout of the KI grid, you can override these in your own css.
