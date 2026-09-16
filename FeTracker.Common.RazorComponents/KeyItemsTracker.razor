@@ -1,40 +1,76 @@
-﻿@using FeTracker.Common.Icons
+﻿@using FeTracker.Common.Constants
 @using FeTracker.Common.Enums
+@using FeTracker.Common.Icons
 @using FeTracker.Common.RazorComponents
 
+@inject TrackerNotifier notifier
+
 <div class="tracker-grid">
-    @foreach (var icon in Icons)
+    @for (var i = 0; i < Icons.Count(); i++)
     {
-        <ClickableIcon Icon=@icon />
+        var internalIndex = i;
+        <ClickableIcon Icon=Icons[internalIndex] />
     }
+    <section class="Count">@Count</section>
 </div>
 
-@* temp hiding of refresh button *@
-@* <button class="@(HideReset ? "hidden" : "")" @onclick="@Refresh">Refresh</button> *@
+<button class="@(HideReset ? "hidden" : "")" @onclick="@Refresh">Refresh</button>
 
 @code {
+    /// <summary>
+    /// Set to true if using a global reset button or an automated data reset of some fashion.
+    /// </summary>
     [Parameter]
     public bool HideReset { get; set; }
 
     List<KeyItemIcon> Icons = [];
 
+    int Count = 0;
+
     protected override void OnInitialized()
     {
-        foreach (KeyItem iconType in Enum.GetValues<KeyItem>())
-        {
-            Icons.Add(new KeyItemIcon(iconType));
-        }
+        Icons.AddRange(Enum.GetValues<KeyItem>().Select(x => new KeyItemIcon(x)));
+
+        notifier.RegisterCallback(new(this, HandleNotification));
 
         base.OnInitialized();
     }
 
-    public async Task Refresh()
+    private void HandleNotification(StatePropertyChangedArgs args)
+    {
+        Console.WriteLine($"got {args.PropertyName} with value {args.Value}");
+        switch (args.PropertyName)
+        {
+            case NotificationConstants.Reset:
+                Refresh();
+                break;
+            case NotificationConstants.KeyItemFound:
+                UpdateCount();
+                break;
+            default:
+                return;
+        }
+    }
+
+    private void Refresh()
     {
         Icons = [];
         foreach (KeyItem iconType in Enum.GetValues<KeyItem>())
         {
             Icons.Add(new KeyItemIcon(iconType));
         }
+        UpdateCount();
+        StateHasChanged();
+    }
+
+    private void UpdateCount()
+    {
+        //Eventaully, supporting versions eariler than 4.x (or 0.3? I don't remember)
+        //where Pass can be or not be a KI will require more logic from this.
+        //We'll see if that ever matters to me.
+        Count = notifier.Version.StartsWith("v5.")
+        ? Icons.Count(x => x.State != IconState.Gray)
+        : Icons.Count(x => x.Icon != KeyItem.Pass && x.State != IconState.Gray);
         StateHasChanged();
     }
 }

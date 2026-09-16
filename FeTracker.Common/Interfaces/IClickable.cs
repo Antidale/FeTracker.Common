@@ -25,7 +25,7 @@ namespace FeTracker.Common.Interfaces
         IconState HandleClick();
 
         /// <summary>
-        /// Sets the state of the icon, used for autotracking/refresh
+        /// Sets the state of the icon
         /// </summary>
         /// <param name="iconState"></param>
         void SetIconState(IconState iconState);

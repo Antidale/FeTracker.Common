@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="FeTracker.Common.RazorComponents/FeTracker.Common.RazorComponents.csproj" />
+  <Project Path="FeTracker.Common.UnitTests/FeTracker.Common.UnitTests.csproj" />
+  <Project Path="FeTracker.Common/FeTracker.Common.csproj" />
+  <Project Path="FeTracker.Sni/FeTracker.Sni.csproj" />
+</Solution>

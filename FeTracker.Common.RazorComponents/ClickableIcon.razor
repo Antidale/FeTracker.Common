@@ -1,5 +1,6 @@
-﻿@using FeTracker.Common.Icons
+﻿@using FeTracker.Common.Constants
 @using FeTracker.Common.Interfaces
+@inject TrackerNotifier trackerNotifier
 
 <img src="@CombinedPath" @onclick=@HandleClick class="@Icon?.Class">
 
@@ -10,21 +11,12 @@
     [Parameter]
     public IClickable? Icon { get; set; }
 
-    private string CombinedPath { get; set; } = string.Empty;
+    private string CombinedPath => Path.Combine(IconFolderPath, Icon?.FileName ?? string.Empty);
 
     private void HandleClick()
     {
         Icon?.HandleClick();
-        CombinedPath = GetFilePath();
-    }
-
-    private string GetFilePath() => Icon is null
-        ? string.Empty
-        : Path.Combine(IconFolderPath, Icon?.FileName ?? string.Empty);
-
-    protected override void OnInitialized()
-    {
-        CombinedPath = GetFilePath();
-        base.OnInitialized();
+        StateHasChanged();
+        trackerNotifier.NotifyPropertyChanged(new(NotificationConstants.KeyItemFound, null));
     }
 }
