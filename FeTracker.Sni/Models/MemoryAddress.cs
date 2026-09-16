@@ -1,4 +1,4 @@
-﻿namespace FeTracker.AutoTrack.Sni.Models
+﻿namespace FeTracker.Sni.Models
 {
     public readonly struct MemoryAddress
     {
@@ -7,6 +7,5 @@
         /// A zero size indicates that ?? what was past me thinking just stopping typing there
         /// </summary>
         public uint Size { get; init; }
-
     }
 }

@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>FeTracker.Common</Title>
-	<Version>1.0.1-beta-7</Version>
+	<Version>2.0.0-beta-20</Version>
 	<Authors>antidale</Authors>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<Title>FeTracker.Common</Title>

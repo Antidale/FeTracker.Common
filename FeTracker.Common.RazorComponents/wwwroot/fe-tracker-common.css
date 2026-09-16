@@ -13,7 +13,7 @@
         "EarthCrystal   TwinHarp    Package     SandRuby"
         "BaronKey       MagmaKey    TowerKey    LucaKey"
         "Adamant        LegendSword Pan         Spoon"
-        ".              RatTail     PinkTail    .";
+        ".              RatTail     PinkTail    Count";
     justify-items: center;
     align-items: center;
     margin: 5px;
@@ -100,4 +100,8 @@
 
 .PinkTail {
     grid-area: PinkTail;
+}
+
+.Count {
+    grid-area: Count;
 }

@@ -13,6 +13,8 @@ namespace FeTracker.Common.Icons
 
         public string FileName { get; private set; } = $"{keyItem}-{state}.png";
 
+        public IconState State => state;
+
         public void SetIconState(IconState iconState)
         {
             //Color/Check/Gray are the only valid states for a KeyItem
