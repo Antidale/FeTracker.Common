@@ -1,7 +1,28 @@
 namespace FeTracker.Sni.Classes;
 
-public class ObjectiveDictionary
+public static class ObjectiveDictionary
 {
+    /// <summary>
+    /// Given the text from the objectives section in the metadata, converts into some text suitable for displaying to users.
+    /// </summary>
+    /// <param name="task">The name/description of the 5.0 objecive task from the embedded JSON document</param>
+    /// <param name="threshold">The threshold value for objectives like Kill X bosses. Non-threshold objectives should get 0 passed in.</param>
+    /// <param name="returnValue">The text to display in the tracker</param>
+    /// <returns>A plain language description </returns>
+    public static bool TryGetObjectiveText(string task, int threshold, out string returnValue)
+    {
+        if (ObjectiveLookup.TryGetValue(task, out var lookupValue))
+        {
+            returnValue = lookupValue is null
+                ? task
+                : string.Format(lookupValue, threshold);
+            return true;
+        }
+
+        returnValue = lookupValue ?? task;
+        return false;
+    }
+
     public static readonly Dictionary<string, string> ObjectiveLookup = new()
     {
         ["char_cecil"] = "Find Cecil",
