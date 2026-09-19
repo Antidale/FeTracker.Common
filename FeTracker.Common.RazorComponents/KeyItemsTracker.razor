@@ -1,5 +1,4 @@
-﻿@using FeTracker.Common.Constants
-@using FeTracker.Common.Enums
+﻿@using FeTracker.Common.Enums
 @using FeTracker.Common.Icons
 @using FeTracker.Common.RazorComponents
 
@@ -22,34 +21,34 @@
     /// </summary>
     [Parameter]
     public bool HideReset { get; set; }
-
     List<KeyItemIcon> Icons = [];
-
     int Count = 0;
+    string _version = string.Empty;
 
     protected override void OnInitialized()
     {
         Icons.AddRange(Enum.GetValues<KeyItem>().Select(x => new KeyItemIcon(x)));
 
-        notifier.RegisterCallback(new(this, HandleNotification));
-
+        notifier.RegisterCallback(TrackerEvent.Reset, new(this, Refresh));
+        notifier.RegisterCallback(TrackerEvent.KeyItemUpdated, new(this, UpdateCount));
+        notifier.RegisterCallback(TrackerEvent.RomUpdated, new(this, HandleRomUpdated));
         base.OnInitialized();
     }
 
-    private void HandleNotification(StatePropertyChangedArgs args)
+    //This entire method is awkward with the current architecture. Maybe I do eventually move the AppState object to this package, since if anyone else wants to build an app, they'll probably do the same/same-ish things
+    //or they can just not use my appstate and use other things?
+    private void HandleRomUpdated(StatePropertyChangedArgs args)
     {
-        Console.WriteLine($"got {args.PropertyName} with value {args.Value}");
-        switch (args.PropertyName)
-        {
-            case NotificationConstants.Reset:
-                Refresh();
-                break;
-            case NotificationConstants.KeyItemFound:
-                UpdateCount();
-                break;
-            default:
-                return;
-        }
+        //We're only operating on actual values
+        if(args.Value is null || args.Value.GetType() != typeof(string)) return;
+
+        //This is a little awkward, since I've been trying to keep the AppState something each dev wants to create on their own, but I still have a need to know about the Version specifically for the Pass.
+        if (args.PropertyName == "Version" && args.Value?.GetType() == typeof(string))
+            _version = (string)args.Value;
+
+        //The AppState in the application should only publish a ROM Updated event when the loaded ROM is FE
+        if (args.PropertyName == "RomFileName")
+            Refresh();
     }
 
     private void Refresh()
@@ -65,12 +64,10 @@
 
     private void UpdateCount()
     {
-        //Eventaully, supporting versions eariler than 4.x (or 0.3? I don't remember)
-        //where Pass can be or not be a KI will require more logic from this.
-        //We'll see if that ever matters to me.
-        Count = notifier.Version.StartsWith("v5.")
+        //current architecture makes very early FE seeds not reliably determine if the Pass is a KI well
+        //Given how few of those seeds are probably played, this is not an issue worth tackling.
+        Count = _version.StartsWith("v5.")
         ? Icons.Count(x => x.State != IconState.Gray)
         : Icons.Count(x => x.Icon != KeyItem.Pass && x.State != IconState.Gray);
-        StateHasChanged();
     }
 }
