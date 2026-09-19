@@ -1,4 +1,4 @@
-﻿@using FeTracker.Common.Constants
+﻿@using FeTracker.Common.Enums
 @using FeTracker.Common.Interfaces
 @inject TrackerNotifier trackerNotifier
 
@@ -9,14 +9,14 @@
     public string IconFolderPath { get; set; } = "Icons/";
 
     [Parameter]
-    public IClickable? Icon { get; set; }
+    public required IClickable Icon { get; set; }
 
     private string CombinedPath => Path.Combine(IconFolderPath, Icon?.FileName ?? string.Empty);
 
-    private void HandleClick()
+    private async Task HandleClick()
     {
-        Icon?.HandleClick();
+        var state = Icon.HandleClick();
         StateHasChanged();
-        trackerNotifier.NotifyPropertyChanged(new(NotificationConstants.KeyItemFound, null));
+        await trackerNotifier.PublishEvent(TrackerEvent.KeyItemUpdated, new(Icon.Name, state));
     }
 }

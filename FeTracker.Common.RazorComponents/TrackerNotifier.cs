@@ -1,43 +1,39 @@
+using FeTracker.Common.Enums;
 using Microsoft.AspNetCore.Components;
 
 namespace FeTracker.Common.RazorComponents;
 
 public class TrackerNotifier
 {
-    private readonly List<EventCallback<StatePropertyChangedArgs>> Callbacks
-    = [];
+    private readonly Dictionary<TrackerEvent, List<EventCallback<StatePropertyChangedArgs>>> Subscriptions = [];
 
-    // Each component will register a callback
-    public void RegisterCallback(EventCallback<StatePropertyChangedArgs> callback)
+    public void RegisterCallback(TrackerEvent trackerEvent, EventCallback<StatePropertyChangedArgs> callback)
     {
-        // Only add if we have not already registered this callback
-        if (!Callbacks.Contains(callback))
+        if (!Subscriptions.TryGetValue(trackerEvent, out List<EventCallback<StatePropertyChangedArgs>>? callbacks))
         {
-            Callbacks.Add(callback);
+            callbacks = [];
+            Subscriptions[trackerEvent] = callbacks;
+        }
+
+        if (!callbacks.Contains(callback))
+        {
+            callbacks.Add(callback);
         }
     }
 
-    public void NotifyPropertyChanged(StatePropertyChangedArgs args)
+    public async Task PublishEvent(TrackerEvent tEvent, StatePropertyChangedArgs args)
     {
-        foreach (var callback in Callbacks)
+        var subs = Subscriptions[tEvent];
+
+        foreach (var callback in subs)
         {
             // Ignore exceptions due to dangling references
             try
             {
                 // Invoke the callback
-                callback.InvokeAsync(args);
+                await callback.InvokeAsync(args);
             }
             catch { }
         }
     }
-
-    public string Version
-    {
-        get;
-        set
-        {
-            field = value;
-            NotifyPropertyChanged(new(nameof(Version), value));
-        }
-    } = string.Empty;
 }

@@ -10,10 +10,10 @@ foreach ($path in Get-ChildItem -Recurse "./**/*.csproj") {
 
     $xml.Project.PropertyGroup.Version = $version
     
-    if ($xml.Project.PropertyGroup.Title -eq "FeTracker.Common.RazorComponents") {
+    if ($xml.Project.PropertyGroup.Title -eq "FeTracker.Common.RazorCompnents" 
+        || $xml.Project.PropertyGroup.Title -eq "FeTracker.Sni" ) {
         $commonRef = $xml.Project.ItemGroup.PackageReference | Where-Object { $_.Include -eq "FeTracker.Common" }
         $commonRef.Version = $version
-        
     }
     $xml.Save($path)
 }
