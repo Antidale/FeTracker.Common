@@ -1,11 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
-
   <PropertyGroup>
     <TargetFrameworks>net10.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <Title>FeTracker.Common.RazorComponents</Title>
-    <Version>2.0.0-beta-30</Version>
+    <Version>2.0.1</Version>
     <Authors>antidale</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Title>FeTracker.Common.RazorComponents</Title>
@@ -15,7 +14,6 @@
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/Antidale/FeTracker.Common</PackageProjectUrl>
   </PropertyGroup>
-
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />
@@ -28,8 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FeTracker.Common" Version="2.0.0-beta-30" />
+    <PackageReference Include="FeTracker.Common" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.12" />
   </ItemGroup>
-
 </Project>

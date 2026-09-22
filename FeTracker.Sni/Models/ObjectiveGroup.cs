@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using FeTracker.Common.Models;
+using FeTracker.Common.Interfaces;
 using FeTracker.Sni.Converters;
 
 namespace FeTracker.Sni.Models;
@@ -12,7 +12,7 @@ public class ObjectiveGroup
     public string Name { get; set; } = string.Empty;
     [JsonPropertyName("tasks")]
     [JsonConverter(typeof(V5ObjectiveConverter))]
-    public List<V5Objective> Tasks { get; set; } = [];
+    public List<IObjective> Tasks { get; set; } = [];
     [JsonPropertyName("rewards")]
-    public List<Reward> Rewards { get; set; } = [];
+    public List<ObjectiveReward> Rewards { get; set; } = [];
 }
