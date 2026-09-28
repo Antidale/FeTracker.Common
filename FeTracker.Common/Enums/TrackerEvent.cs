@@ -18,4 +18,8 @@ public enum TrackerEvent
     /// The loaded rom has updated, indicating that the RomFileName, Header, and Version have all updated
     /// </summary>
     RomUpdated,
+    /// <summary>
+    /// A setting has been updated
+    /// </summary>
+    SettingUpdated
 }
