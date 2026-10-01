@@ -2,7 +2,7 @@
 @using FeTracker.Common.Interfaces
 @inject TrackerNotifier trackerNotifier
 
-<img src="@CombinedPath" @onclick=@HandleClick class="@Icon?.Class">
+<img src="@CombinedPath" alt="@Icon.Name" @onclick="async () => { await HandleClick(); }" class="@Icon?.Class">
 
 @code {
     [CascadingParameter]
@@ -11,12 +11,15 @@
     [Parameter]
     public required IClickable Icon { get; set; }
 
+    [Parameter]
+    public TrackerEvent IconEvent { get; set; } = TrackerEvent.KeyItemUpdated;
+
     private string CombinedPath => Path.Combine(IconFolderPath, Icon?.FileName ?? string.Empty);
 
     private async Task HandleClick()
     {
         var state = Icon.HandleClick();
         StateHasChanged();
-        await trackerNotifier.PublishEvent(TrackerEvent.KeyItemUpdated, new(Icon.Name, state));
+        await trackerNotifier.PublishEvent(IconEvent, new(Icon.Name, state));
     }
 }
