@@ -11,6 +11,10 @@ public enum TrackerEvent
     /// </summary>
     KeyItemUpdated,
     /// <summary>
+    /// A boss was found or defeated.
+    /// </summary>
+    BossUpdated,
+    /// <summary>
     /// An objective was completed, or reset has undone the completion of the objective
     /// </summary>
     ObjectiveUpdated,
