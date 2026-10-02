@@ -4,7 +4,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <Title>FeTracker.Common.RazorComponents</Title>
-    <Version>2.3.0</Version>
+    <Version>2.4.0</Version>
     <Authors>antidale</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Title>FeTracker.Common.RazorComponents</Title>
@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FeTracker.Common" Version="2.3.0" />
+    <PackageReference Include="FeTracker.Common" Version="2.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.12" />
   </ItemGroup>
 </Project>
