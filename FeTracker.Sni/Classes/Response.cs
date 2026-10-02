@@ -7,32 +7,19 @@ namespace FeTracker.Sni.Classes;
 /// <typeparam name="T"></typeparam>
 public class Response<T>
 {
-    public T? Data { get; private set; }
+    private T? data;
+    public T Data { get => Success && data is not null ? data! : throw new InvalidOperationException(); }
     public string ErrorMessage { get; private set; } = string.Empty;
     public bool Success { get; private set; } = false;
 
 
-    /// <summary>
-    /// Basic constructor for the Response object.
-    /// </summary>
-    /// <param name="responseObject"></param>
-    /// <param name="errorMessage"></param>
-    /// <param name="success"></param>
-    /// <param name="errorStatusCode">Should be not null when using this constructor for an error</param>
-    public Response(T? responseObject, string errorMessage = "", bool success = false)
-    {
-        Data = responseObject;
-        ErrorMessage = errorMessage;
-        Success = success;
-    }
-
-    public Response() { }
+    private Response() { }
 
     public static Response<T> SetSuccess(T responseObject)
     {
         return new Response<T>
         {
-            Data = responseObject,
+            data = responseObject,
             Success = true,
             ErrorMessage = string.Empty
         };
@@ -44,7 +31,11 @@ public class Response<T>
         {
             ErrorMessage = errorMessage,
             Success = false,
-            Data = default
         };
     }
+}
+
+public class Response
+{
+    public static Response<T> SetSuccess<T>(T data) => Response<T>.SetSuccess(data);
 }
