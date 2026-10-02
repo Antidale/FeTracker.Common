@@ -1,5 +1,4 @@
 using System.IO.Compression;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
 using FeTracker.Sni.Constants;
@@ -63,38 +62,26 @@ public class MetadataHelper
 
         if (!docString.Success || docString.Data is null)
         {
-            return Response<SeedMetadata>.SetError("Unable to read metadata document. Are you sure you have an FE seed loaded");
+            return Response<SeedMetadata>.SetError("Unable to read metadata document. Are you sure you have an FE seed loaded?");
         }
 
         var stuff = docString.Data.Response.Data.ToStringUtf8();
         var metadata = JsonSerializer.Deserialize<SeedMetadata>(docString.Data.Response.Data.ToStringUtf8());
 
-        if (metadata is null) { return Response<SeedMetadata>.SetError("Unable to parse metadata document. Are you sure you have an FE seed loaded"); }
+        if (metadata is null) { return Response<SeedMetadata>.SetError("Unable to parse metadata document. Are you sure you have an FE seed loaded?"); }
 
         return Response.SetSuccess(metadata);
     }
 
     private static async Task<Response<SeedDetail>> ParseMetadataInforamation(DeviceMemoryClient client, string uri, SeedMetadata metadata)
     {
-        if (metadata.MetadataAddr > 0)
+        return (metadata.Version.Split(".").First(), metadata.MetadataAddr) switch
         {
-            return await ParseCompressedData(client, uri, metadata);
-        }
-        else if (metadata.Version.StartsWith("v5"))
-        {
-            return ParseV5Data(metadata);
-        }
-        else if (metadata.Version.StartsWith("v0.4") || metadata.Version.StartsWith("v4."))
-        {
-            return ParseV4Data(metadata);
-        }
-        else
-        {
-            return Response.SetSuccess(new SeedDetail
-            {
-                Flags = metadata.Flags,
-            });
-        }
+            (_, > 0) => await ParseCompressedData(client, uri, metadata),
+            ("v5", _) => ParseV5Data(metadata),
+            ("v4", _) => ParseV4Data(metadata),
+            (_, _) => Response.SetSuccess(new SeedDetail { Flags = metadata.Flags })
+        };
     }
 
     private static async Task<Response<SeedDetail>> ParseCompressedData(DeviceMemoryClient client, string uri, SeedMetadata metadata)
