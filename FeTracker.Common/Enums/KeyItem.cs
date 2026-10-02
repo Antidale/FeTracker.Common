@@ -1,9 +1,11 @@
 ﻿namespace FeTracker.Common.Enums;
 
+/// <summary>
+/// Enumerates the potential Key Items.
+/// </summary>
 public enum KeyItem
 {
-    Pass = -1,
-    Package,
+    Package = 0,
     SandRuby,
     LegendSword,
     BaronKey,
@@ -19,5 +21,6 @@ public enum KeyItem
     Pan,
     Spoon,
     PinkTail,
-    Crystal
+    Crystal,
+    Pass
 }
