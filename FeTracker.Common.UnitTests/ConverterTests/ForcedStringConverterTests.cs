@@ -41,6 +41,7 @@ public class ForcedStringConverterTests
             }
         ]
         """;
+
     private class TestHelper
     {
         [JsonPropertyName("description")]
@@ -48,7 +49,5 @@ public class ForcedStringConverterTests
         [JsonPropertyName("req")]
         [JsonConverter(typeof(ForceStringConverter))]
         public string Req { get; set; } = string.Empty;
-
-
     }
 }

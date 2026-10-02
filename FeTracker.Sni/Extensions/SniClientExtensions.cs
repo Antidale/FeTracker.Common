@@ -26,6 +26,23 @@ public static class SniClientExtensions
 
             return await RetryHelper.Retry(() => client.SingleReadAsync(readMemoryRequest));
         }
+
+        public async Task<Response<SingleReadMemoryResponse>> ReadByMemoryAddressAsync(uint address, uint size, string uri)
+        {
+            var readMemoryRequest = new SingleReadMemoryRequest
+            {
+                Request = new ReadMemoryRequest
+                {
+                    RequestAddress = address,
+                    RequestAddressSpace = AddressSpace.FxPakPro,
+                    RequestMemoryMapping = MemoryMapping.Unknown,
+                    Size = size
+                },
+                Uri = uri,
+            };
+
+            return await RetryHelper.Retry(() => client.SingleReadAsync(readMemoryRequest));
+        }
     }
 
     extension(DeviceInfoClient client)
