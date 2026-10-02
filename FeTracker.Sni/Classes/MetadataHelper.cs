@@ -22,10 +22,9 @@ public class MetadataHelper
                             .BindAsync(metadata =>
                                 ParseMetadataInforamation(memoryClient, uri, metadata));
         }
-        catch (Exception ex)
+        catch
         {
             //As we find causes of why things hit this, we can start using more specific handling
-            Console.WriteLine(ex.Message);
             return Response<SeedDetail>.SetError("Error while trying to get metadata. Make sure you have an FE rom loaded.");
         }
     }
@@ -65,7 +64,6 @@ public class MetadataHelper
             return Response<SeedMetadata>.SetError("Unable to read metadata document. Are you sure you have an FE seed loaded?");
         }
 
-        var stuff = docString.Data.Response.Data.ToStringUtf8();
         var metadata = JsonSerializer.Deserialize<SeedMetadata>(docString.Data.Response.Data.ToStringUtf8());
 
         if (metadata is null) { return Response<SeedMetadata>.SetError("Unable to parse metadata document. Are you sure you have an FE seed loaded?"); }
