@@ -1,4 +1,5 @@
 ﻿@using FeTracker.Common.Enums
+@using FeTracker.Common.Helpers
 @using FeTracker.Common.Icons
 @using FeTracker.Common.RazorComponents
 
@@ -40,7 +41,7 @@
     private void HandleRomUpdated(StatePropertyChangedArgs args)
     {
         //We're only operating on actual values
-        if(args.Value is null || args.Value.GetType() != typeof(string)) return;
+        if(args.Value is null) return;
 
         //This is a little awkward, since I've been trying to keep the AppState something each dev wants to create on their own, but I still have a need to know about the Version specifically for the Pass.
         if (args.PropertyName == "Version" && args.Value?.GetType() == typeof(string))

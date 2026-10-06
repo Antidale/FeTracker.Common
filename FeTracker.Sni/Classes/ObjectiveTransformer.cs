@@ -129,7 +129,7 @@ public partial class ObjectiveTransformer
         ["quest_wakeyang"] = "Wake Yang",
         ["quest_tradepan"] = "Return Pan",
         ["quest_tradepink"] = "Trade Pink",
-        ["quest_pass"] = "Unlock Pass Door",
+        ["quest_pass"] = "Use Pass",
         ["quest_kaipoinn"] = "Complete Package",
         ["internal_dkmatter"] = "Dark Matter Count: {0:n0}",
         ["internal_keyitem"] = "KI Count: {0}",

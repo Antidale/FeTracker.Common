@@ -25,5 +25,9 @@ public enum TrackerEvent
     /// <summary>
     /// A setting has been updated
     /// </summary>
-    SettingUpdated
+    SettingUpdated,
+    /// <summary>
+    /// For when the tracker is done reading the objectives
+    /// </summary>
+    ObjectivesSet
 }

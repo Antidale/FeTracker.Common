@@ -1,8 +1,11 @@
 ﻿@using FeTracker.Common.Enums
+@using FeTracker.Common.Helpers
+@using FeTracker.Common.Icons
 @using FeTracker.Common.Interfaces
 @inject TrackerNotifier trackerNotifier
 
-<img src="@CombinedPath" alt="@Icon.Name" @onclick="async () => { await HandleClick(); }" class="@Icon?.Class">
+<img src="@CombinedPath" alt="@Icon.Name" @onclick="async () => { await HandleClick(); }" class="@Icon?.Class"
+     data-required="@isRequired.ToString()">
 
 @code {
     [CascadingParameter]
@@ -14,6 +17,14 @@
     [Parameter]
     public TrackerEvent IconEvent { get; set; } = TrackerEvent.KeyItemUpdated;
 
+    protected override async Task OnInitializedAsync()
+    {
+        trackerNotifier.RegisterCallback(TrackerEvent.ObjectivesSet, new(this, OnObjectivesSet));
+        await base.OnInitializedAsync();
+    }
+
+    public bool isRequired { get; set; } = false;
+
     private string CombinedPath => Path.Combine(IconFolderPath, Icon?.FileName ?? string.Empty);
 
     private async Task HandleClick()
@@ -22,4 +33,18 @@
         StateHasChanged();
         await trackerNotifier.PublishEvent(IconEvent, new(Icon.Name, state));
     }
+
+    private void OnObjectivesSet(StatePropertyChangedArgs args)
+    {
+        //TODO: think of a better way of handling this. It really shouldn't be here like this
+        if (Icon.GetType() == typeof(KeyItemIcon))
+        {
+            var objectives = args.Value as List<string> ?? [];
+            var icon = Enum.GetValues<KeyItem>().First(x => x.ToString() == Icon.Name);
+            var kiObjectives = KeyItemHelper.RelatedObjectiveLookup[icon];
+            isRequired = objectives.Intersect(kiObjectives).Any();
+            StateHasChanged();
+        }
+    }
+    
 }
