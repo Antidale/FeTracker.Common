@@ -9,7 +9,7 @@ using static sni.DeviceMemory;
 
 namespace FeTracker.Sni.Classes;
 
-public class MetadataHelper
+public class MetadataReader
 {
     public static async Task<Response<SeedDetail>> GetSeedDetails(GrpcChannel channel, string uri)
     {
@@ -103,7 +103,7 @@ public class MetadataHelper
             {
                 foreach (var task in group.Tasks)
                 {
-                    if (ObjectiveDictionary.TryGetObjectiveText(task.Objective, task.Threshold, out var returnValue))
+                    if (ObjectiveTransformer.TryGetObjectiveText(task.Objective, task.Threshold, out var returnValue))
                     {
                         task.Objective = returnValue;
                     }
