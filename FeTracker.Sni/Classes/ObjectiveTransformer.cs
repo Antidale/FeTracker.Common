@@ -3,7 +3,7 @@ using FeTracker.Sni.Models;
 
 namespace FeTracker.Sni.Classes;
 
-public partial class ObjectiveDictionary
+public partial class ObjectiveTransformer
 {
     /// <summary>
     /// Given the text from the objectives section in the metadata, converts into some text suitable for displaying to users.

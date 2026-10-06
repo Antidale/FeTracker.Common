@@ -8,7 +8,7 @@ using static sni.DeviceMemory;
 
 namespace FeTracker.Sni.Classes;
 
-public static class KeyItemHelper
+public static class KeyItemReader
 {
     public static async Task<Dictionary<KeyItem, IconState>> GetKeyItemStatusAsync(GrpcChannel channel, string uri, bool includePass = true)
     {
