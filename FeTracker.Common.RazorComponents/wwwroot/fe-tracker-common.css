@@ -6,8 +6,8 @@
     display: grid;
     grid-template-columns: repeat(4, 32px);
     grid-template-rows: repeat(5, 32px);
-    row-gap: 3px;
-    column-gap: 3px;
+    row-gap: 5px;
+    column-gap: 5px;
     grid-template-areas:
         "Crystal        Pass        Hook        DarknessCrystal"
         "EarthCrystal   TwinHarp    Package     SandRuby"
@@ -28,6 +28,14 @@
 
 .completed-objective {
     text-decoration: line-through;
+}
+
+[data-required="True"] {
+    --required-color: hsl(from var(--background) h s calc(l + 10));
+    background-color: var(--required-color);
+    border: 1px solid var(--required-color);
+    border-radius: 3px;
+    padding: 1px;
 }
 
 .Crystal {
