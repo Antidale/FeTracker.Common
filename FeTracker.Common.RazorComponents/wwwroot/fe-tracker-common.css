@@ -1,4 +1,9 @@
-﻿.tracker-grid {
+﻿::root {
+    --required-color: hsl(from var(--tracker-background) h s calc(l + 10));
+    --tracker-background: rgba(0, 0, 99);
+}
+
+.tracker-grid {
     --tracker-background: rgba(0, 0, 99);
     --tracker-border-color: white;
     width: 140px;
@@ -31,7 +36,6 @@
 }
 
 [data-required="True"] {
-    --required-color: hsl(from var(--background) h s calc(l + 10));
     background-color: var(--required-color);
     border: 1px solid var(--required-color);
     border-radius: 3px;
