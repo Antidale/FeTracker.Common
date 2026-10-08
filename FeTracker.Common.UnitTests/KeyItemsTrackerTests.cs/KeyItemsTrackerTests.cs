@@ -1,4 +1,3 @@
-using System;
 using FeTracker.Common.Helpers;
 using FluentAssertions;
 
