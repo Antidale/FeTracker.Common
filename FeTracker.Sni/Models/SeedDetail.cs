@@ -1,12 +1,15 @@
 using System;
+using FeTracker.Common.Models;
 
 namespace FeTracker.Sni.Models;
 
 public class SeedDetail
 {
-    public string Version { get; set; } = string.Empty;
-    public string Flags { get; set; } = string.Empty;
-    public string BinaryFlags { get; set; } = string.Empty;
+    public FeVersion Version { get; set; } = new("");
+    /// <summary>
+    /// An object containing both the expanded and condensed flagstrings
+    /// </summary>
+    public Flags Flags { get; set; } = new(string.Empty, string.Empty);
     public string Seed { get; set; } = string.Empty;
     /// <summary>
     /// Populated when a seed is using 4.x style objectives

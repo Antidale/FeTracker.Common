@@ -45,7 +45,9 @@ public class SeedMetadataTests
         result.Seed.Should().Be("ZN23DRTTLY");
         result.MetadataAddr.Should().Be(0x1FFBC2);
         result.MetadataLen.Should().Be(0x436);
-        result.Version.Should().Be("v5.0.0-a.4");
+        result.Version.Version.Should().BeEquivalentTo(new Version("5.0.0"));
+        result.Version.Host.Should().Be(Host.Alpha);
+        result.Version.VersionString.Should().Be("v5.0.0-a.4");
         result.FrameworkVersion.Should().Be("v5.0.0");
 
     }
@@ -57,7 +59,9 @@ public class SeedMetadataTests
 
         result.Should().NotBeNull();
         result.Seed.Should().Be("8L713VZ79J");
-        result.Version.Should().Be("v5.0.0-a.3");
+        result.Version.Version.Should().BeEquivalentTo(new Version("5.0.0"));
+        result.Version.Host.Should().Be(Host.Alpha);
+        result.Version.VersionString.Should().Be("v5.0.0-a.3");
         result.Flags.Should().Be("OArandom:5,tough_quest OB1:quest_forge/group_a:4/do_all:crystal Kmain/summon/moon/char/nofree/latedark Pkey Cstandard/nofree/nogiant/distinct:9/start:any/partner:char/no:fusoya/j:abilities/nekkie Twildish/maxtier:7/miabs:pro Sstandard Bmaybe/alt:gauntlet/chaosburn/whichbez Etoggle Xnokeybonus/objbonus:20/kicheckbonus:3/maxmulti:400/bonuses:mul Gwarp/life/sylph/backrow Qfastrom/msgspeedfix -kit:basic -kit2:better -noadamants -spoon -smith:super,playable");
         result.Objectives.Should().Contain("Complete all objectives to win [crystal]Crystal");
         result.FrameworkVersion.Should().BeEmpty();
@@ -72,7 +76,9 @@ public class SeedMetadataTests
 
         result.Should().NotBeNull();
         result.Seed.Should().Be("DUCUWFSGSW");
-        result.Version.Should().Be("v4.6.0");
+        result.Version.VersionString.Should().Be("v4.6.0");
+        result.Version.Host.Should().Be(Host.Main);
+        result.Version.Version.Should().BeEquivalentTo(new Version("4.6.0"));
         result.Flags.Should().Be("O1:quest_forge/2:quest_tradepink/random:1,quest,char/req:all/win:crystal Kmain/summon/moon Pkey Cstandard/nofree/j:abilities Twildish Sstandard Bstandard/alt:gauntlet Etoggle Glife/sylph/backrow -kit:basic -kit2:miab -spoon -smith:super -pushbtojump");
         result.BinaryFlags.Should().Be("bBAYAIK0CAAAAABAZHqgAAAAAAAAAABCAAgABJAFwQQEGAAE");
         result.Objectives.Should().Be("""
@@ -90,7 +96,9 @@ public class SeedMetadataTests
 
         result.Should().NotBeNull();
         result.Seed.Should().Be("BYM2J1YHQH");
-        result.Version.Should().Be("v4.7.0.Gale");
+        result.Version.VersionString.Should().Be("v4.7.0.Gale");
+        result.Version.Version.Should().BeEquivalentTo(new Version("4.7.0"));
+        result.Version.Host.Should().Be(Host.Galeswift);
         result.Flags.Should().Be("O1:quest_monsterking/2:quest_ordeals/random:5,tough_quest/random2:2,quest,boss/req:7/hardreq:1,2/win:crystal Kmain/moon/nofree:dwarf/unreliabledark/start:legend Pkey Crelaxed/noearned/distinct:7/start:any/no:fusoya/abilities:j/nekkie/nodupes Twildish/playable/maxtier:7/mintier:3 Sstandard/playable/always:sirens,hrglass,bacchus,starveil,cure3,illusion,coffin Bstandard/alt:gauntlet/whichburn/newscriptstats Etoggle Hrandom Gwarp/life/backrow Fweighted Aagnostic Xzonkbonus:10 Zvanilla -kit:better -kit2:freedom -kit3:hero -noadamants -spoon -smith:super,good,spoilsuper -vanilla:miabs -tweak:yanghp");
         result.BinaryFlags.Should().Be("bBAcAAADwqwEAAAAAUCIFAAAAAADIAADAAgQ6KQcAAQAAABAAQAYAAAYIqBAggL4AEAJAIAAAgAkAAEAAAABCwRVIAQAACAAAAAAAAAAAAQ");
         result.Objectives.Should().Be("""
