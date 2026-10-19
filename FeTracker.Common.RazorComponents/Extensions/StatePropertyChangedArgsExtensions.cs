@@ -11,5 +11,11 @@ public static class StatePropertyChangedArgsExtensions
             return s.PropertyName == nameof(AppStateBase.Flags)
                 && s.Value?.GetType() == typeof(Flags);
         }
+
+        public bool IsVersionUpdate()
+        {
+            return s.PropertyName == nameof(AppStateBase.Version)
+                && s.Value?.GetType() == typeof(FeVersion);
+        }
     }
 }

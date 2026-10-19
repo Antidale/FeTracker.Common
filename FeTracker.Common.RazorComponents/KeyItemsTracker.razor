@@ -2,6 +2,7 @@
 @using FeTracker.Common.Icons
 @using FeTracker.Common.Models
 @using FeTracker.Common.RazorComponents
+@using FeTracker.Common.RazorComponents.Extensions
 
 @inject TrackerNotifier notifier
 
@@ -43,7 +44,7 @@
         //We're only operating on actual values
         if(args.Value is null) return;
 
-        if (args.PropertyName == nameof(AppStateBase.Version) && args.Value?.GetType() == typeof(FeVersion))
+        if (args.IsVersionUpdate())
             FeVersion = (FeVersion)args.Value;
 
         //The AppState in the application should only publish a ROM Updated event when the loaded ROM is FE
