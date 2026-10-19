@@ -1,6 +1,6 @@
 ﻿@using FeTracker.Common.Enums
-@using FeTracker.Common.Helpers
 @using FeTracker.Common.Icons
+@using FeTracker.Common.Models
 @using FeTracker.Common.RazorComponents
 
 @inject TrackerNotifier notifier
@@ -24,7 +24,7 @@
     public bool HideReset { get; set; }
     List<KeyItemIcon> Icons = [];
     int Count = 0;
-    string _version = string.Empty;
+    FeVersion FeVersion = new FeVersion("");
 
     protected override void OnInitialized()
     {
@@ -43,9 +43,8 @@
         //We're only operating on actual values
         if(args.Value is null) return;
 
-        //This is a little awkward, since I've been trying to keep the AppState something each dev wants to create on their own, but I still have a need to know about the Version specifically for the Pass.
-        if (args.PropertyName == "Version" && args.Value?.GetType() == typeof(string))
-            _version = (string)args.Value;
+        if (args.PropertyName == nameof(AppStateBase.Version) && args.Value?.GetType() == typeof(FeVersion))
+            FeVersion = (FeVersion)args.Value;
 
         //The AppState in the application should only publish a ROM Updated event when the loaded ROM is FE
         if (args.PropertyName == "RomFileName")
@@ -67,7 +66,7 @@
     {
         //current architecture makes very early FE seeds not reliably determine if the Pass is a KI well
         //Given how few of those seeds are probably played, this is not an issue worth tackling.
-        Count = _version.StartsWith("v5.")
+        Count = FeVersion.Version.Major == 5
         ? Icons.Count(x => x.State != IconState.Gray)
         : Icons.Count(x => x.Icon != KeyItem.Pass && x.State != IconState.Gray);
     }
