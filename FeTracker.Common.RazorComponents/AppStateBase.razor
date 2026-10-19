@@ -1,0 +1,28 @@
+﻿@using FeTracker.Common.Enums
+@using FeTracker.Common.Models
+@inject TrackerNotifier notifier;
+
+@code {
+
+    public Flags Flags
+    {
+        get;
+        set
+        {
+            field = value;
+            Task.Run(async () => await notifier.PublishEvent(TrackerEvent.RomUpdated,
+            new StatePropertyChangedArgs(nameof(Flags), field)));
+            StateHasChanged();
+        }
+    } = new(string.Empty, string.Empty);
+
+    public FeVersion Version
+    {
+        get;
+        set
+        {
+            field = value;
+            Task.Run(async () => await notifier.PublishEvent(TrackerEvent.RomUpdated, new(nameof(Version), field)));
+        }
+    } = new FeVersion("");
+}
