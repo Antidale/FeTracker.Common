@@ -1,4 +1,3 @@
-using System;
 using FeTracker.Common.Enums;
 
 namespace FeTracker.Common.Helpers;

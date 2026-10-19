@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../FeTracker.Sni/FeTracker.Sni.csproj" />
-    <ProjectReference Include="../FeTracker.Common/FeTracker.Common.csproj" />
+    <ProjectReference Include="../../FeTracker.Sni/FeTracker.Sni.csproj" />
+    <ProjectReference Include="../../FeTracker.Common/FeTracker.Common.csproj" />
   </ItemGroup>
 
 </Project>

@@ -73,12 +73,12 @@ public class MetadataReader
 
     private static async Task<Response<SeedDetail>> ParseMetadataInforamation(DeviceMemoryClient client, string uri, SeedMetadata metadata)
     {
-        return (metadata.Version.Split(".").First(), metadata.MetadataAddr) switch
+        return (metadata.Version.Version.Major, metadata.MetadataAddr) switch
         {
             (_, > 0) => await ParseCompressedData(client, uri, metadata),
-            ("v5", _) => ParseV5Data(metadata),
-            ("v4", _) => ParseV4Data(metadata),
-            (_, _) => Response.SetSuccess(new SeedDetail { Flags = metadata.Flags })
+            (5, _) => ParseV5Data(metadata),
+            (4, _) => ParseV4Data(metadata),
+            (_, _) => Response.SetSuccess(new SeedDetail { Flags = new(metadata.Flags, metadata.BinaryFlags) })
         };
     }
 

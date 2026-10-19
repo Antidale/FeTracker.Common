@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using FeTracker.Common.Models;
 using FeTracker.Sni.Converters;
 
 namespace FeTracker.Sni.Models;
@@ -6,7 +7,8 @@ namespace FeTracker.Sni.Models;
 internal class SeedMetadata
 {
     [JsonPropertyName("version")]
-    public string Version { get; set; } = string.Empty;
+    [JsonConverter(typeof(FeVersionConverter))]
+    public FeVersion Version { get; set; } = new("");
 
     [JsonPropertyName("flags")]
     public string Flags { get; set; } = string.Empty;
@@ -36,8 +38,7 @@ internal class SeedMetadata
     {
         return new SeedDetail
         {
-            Flags = this.Flags,
-            BinaryFlags = this.BinaryFlags,
+            Flags = new(this.Flags, this.BinaryFlags),
             Seed = this.Seed,
             Version = this.Version
         };
